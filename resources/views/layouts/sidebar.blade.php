@@ -1,6 +1,6 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-    <div class="sidebar-brand">
-        <span class="brand-text fw-light">{{Auth::user()->name}}</span>
+    <div class="sidebar-brand text-center py-3">
+        <span class="brand-text fw-light">{{ Auth::user()->name }}</span>
     </div>
 
     <div class="sidebar-wrapper">
@@ -9,7 +9,8 @@
 
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard') }}" class="nav-link active">
+                    <a href="{{ url('/dashboard') }}" 
+                       class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-speedometer"></i>
                         <p>Dashboard</p>
                     </a>
@@ -17,7 +18,8 @@
 
                 <!-- Companies -->
                 <li class="nav-item">
-                    <a href="{{ url('/companies') }}" class="nav-link">
+                    <a href="{{ url('/companies') }}" 
+                       class="nav-link {{ request()->is('companies*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-building"></i>
                         <p>Companies</p>
                     </a>
@@ -25,7 +27,8 @@
 
                 <!-- Employees -->
                 <li class="nav-item">
-                    <a href="{{ url('/employees') }}" class="nav-link">
+                    <a href="{{ url('/employees') }}" 
+                       class="nav-link {{ request()->is('employees*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-people-fill"></i>
                         <p>Employees</p>
                     </a>
@@ -33,12 +36,14 @@
 
                 <!-- Logout -->
                 <li class="nav-item">
-                    <a href="{{ url('/logout') }}" class="nav-link">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <p>Logout</p>
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST" class="m-0">
+                        @csrf
+                        <button type="submit" class="nav-link btn btn-link text-start w-100 {{ request()->is('logout') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-sign-out-alt" style="color: #c2c7d0;"></i>
+                            <p style="color: #c2c7d0;">Logout</p>
+                        </button>
+                    </form>
                 </li>
-
 
             </ul>
         </nav>
