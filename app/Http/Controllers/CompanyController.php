@@ -19,15 +19,7 @@ class CompanyController extends Controller
 
     public function __construct()
     {
-        $this->ensureAuthenticated();
-    }
-
-    private function ensureAuthenticated()
-    {
-        if (!Auth::check()) {
-            header('Location: ' . route('login'));
-            exit;
-        }
+        $this->middleware('auth');
     }
 
     public function index(Request $request)

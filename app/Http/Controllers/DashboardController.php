@@ -11,17 +11,9 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-       $this->ensureAuthenticated();
+        $this->middleware('auth');
     }
     
-    private function ensureAuthenticated()
-    {
-        if (!Auth::check()) {
-            header('Location: ' . route('login'));
-            exit;
-        }
-    }
-
     public function index()
     {
         $employessCount = Employee::count();

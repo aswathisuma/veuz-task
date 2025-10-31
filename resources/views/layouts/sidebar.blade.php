@@ -1,6 +1,6 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <div class="sidebar-brand text-center py-3">
-        <span class="brand-text fw-light">{{ Auth::user()->name }}</span>
+        <span class="brand-text fw-light">{{ Auth::user()->name ?? 'Guest' }}</span>
     </div>
 
     <div class="sidebar-wrapper">
